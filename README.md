@@ -5,6 +5,11 @@ The main usage is in combination with [DrowsyDromedary](https://github.com/educo
 
 Please note that the original DrowsyDromedary was written by [Matt Zukowski](https://github.com/zuk "Matt's github profile") and can be found here: https://github.com/zuk/DrowsyDromedary
 
+## Copyright and license
+This software is available under the GPL v2.0 license (see license file in this repo for details)
+
+Copyright (C) 2015 [Armin Krauss](https://github.com/mackrauss "Armin's github profile")
+
 ## Installation
 ```
 git clone https://github.com/educoder/json2rest.git
@@ -24,6 +29,3 @@ Please note that the first two parameters are required and the last three are op
 4. domain part of the URL (could be anything with subdomains and such like drowsy.yourdomain.com or just yourdomain.com if that is serving Drowsy or Drowsy is under that domain but a certain path. Your choice here)
 5. Port (should be 443 since there is no reason to take to a REST interface without SSL, especially considering that BasicAuth without SSL is 100% insecure)
 
-This software is available under the GPL v2.0 licence (see licence file in this repo for details)
-
-Copyright (C) 2015 [Armin Krauss](https://github.com/mackrauss "Armin's github profile")
