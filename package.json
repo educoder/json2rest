@@ -1,0 +1,19 @@
+{
+  "name": "json2rest",
+  "version": "0.0.1",
+  "description": "Putting JSON files to REST",
+  "scripts": {
+    "start": "app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:encorelab/hampshire-apps.git"
+  },
+  "dependencies": {
+    "optimist": "^0.6.1",
+    "underscore": "^1.8.2"
+  },
+  "devDependencies": {},
+  "author": "Armin Krauss",
+  "license": "GPL"
+}
