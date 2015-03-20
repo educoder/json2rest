@@ -1,24 +1,29 @@
 var fs = require('fs');
-var _ = require('underscore');
-// Via http://isolasoftware.it/2012/05/28/call-rest-api-with-node-js/
-var https = require('https');
-// http://stackoverflow.com/questions/11091974/ssl-error-in-nodejs/12683325#comment25535766_12683325
-// forcing TLS v1 since server is secure and rejects SSLv2 and v3
-https.globalAgent.options.secureProtocol = 'TLSv1_method';
+
 // grab information from user to be more specific
 var argv = require('optimist')
-  .usage("Usage:\n\t$0 <collection to populate (incl. path)> <json file with data> <BasicAuth user:pwd (optional)> <database host (default 'localhost')> <database port (default 8000)>")
+  .usage("Usage:\n\t$0 <collection to populate (incl. path)> <json file with data> <database host (default 'localhost')> <database port (default 8000)> <BasicAuth user:pwd (optional)>")
   .demand(2)
   .argv;
 
 var COLLECTION = argv._[0];
 var JSONFILE = argv._[1];
-var AUTH = argv._[2] || null;
-var HOST = argv._[3] || 'localhost';
-var PORT = argv._[4] || 8000;
+var HOST = argv._[2] || 'localhost';
+var PORT = argv._[3] || 8000;
+var AUTH = argv._[4] || null;
+
+var https;
+if (PORT === 443) {
+    // Via http://isolasoftware.it/2012/05/28/call-rest-api-with-node-js/
+    https = require('https');
+    // http://stackoverflow.com/questions/11091974/ssl-error-in-nodejs/12683325#comment25535766_12683325
+    // forcing TLS v1 since server is secure and rejects SSLv2 and v3
+    https.globalAgent.options.secureProtocol = 'TLSv1_method';
+} else {
+    https = require('http');
+}
 
 var jsonObject;
-
 
 // Read data from JSON file into a JS object
 if (COLLECTION !== null & typeof COLLECTION !== "undefined") {
@@ -58,7 +63,7 @@ var array = JSON.parse(jsonObject);
 var date = new Date();
 
 
-_.each(array, function(doc){
+array.forEach(function(doc) {
     var reqPost = https.request(optionspost, function(res) {
         console.log("statusCode: ", res.statusCode);
         // uncomment it for header details
@@ -88,4 +93,3 @@ _.each(array, function(doc){
         process.exit(1);
     });
 });
-
