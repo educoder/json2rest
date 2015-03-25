@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:encorelab/hampshire-apps.git"
+    "url": "git@github.com:mackrauss/json2rest.git"
   },
   "dependencies": {
     "optimist": "^0.6.1"
