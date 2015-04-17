@@ -1,4 +1,5 @@
 var fs = require('fs');
+var _ = require('underscore');
 
 // grab information from user to be more specific
 var argv = require('optimist')
@@ -45,7 +46,7 @@ var optionspost = {
     host : HOST,
     port : PORT,
     path : '/'+COLLECTION,
-    method : 'POST',
+    method : 'PUT',
     headers : postheaders
 };
 
@@ -64,7 +65,19 @@ var date = new Date();
 
 
 array.forEach(function(doc) {
-    var reqPost = https.request(optionspost, function(res) {
+    var optionspost_copy;
+    if (optionspost['method'] === "PUT") {
+        console.log("Dealing with a PUT");
+        // clone optionpost
+        optionspost_copy = _.clone(optionspost);
+        // add OID of object to PUT to to path
+        optionspost_copy.path += '/' + doc['_id']['$oid'];
+        console.log(optionspost_copy);
+    } else {
+        optionspost_copy = optionspost
+    }
+
+    var reqPost = https.request(optionspost_copy, function(res) {
         console.log("statusCode: ", res.statusCode);
         // uncomment it for header details
         console.log("headers: ", res.headers);

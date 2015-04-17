@@ -10,9 +10,21 @@
     "url": "git@github.com:mackrauss/json2rest.git"
   },
   "dependencies": {
-    "optimist": "^0.6.1"
+    "optimist": "^0.6.1",
+    "underscore": "^1.8.2"
   },
   "devDependencies": {},
   "author": "Armin Krauss",
-  "license": "GPL"
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/mackrauss/json2rest/issues"
+  },
+  "homepage": "https://github.com/mackrauss/json2rest",
+  "main": "app.js",
+  "keywords": [
+    "json",
+    "REST",
+    "RESTful",
+    "HTTP"
+  ]
 }
